@@ -1,6 +1,6 @@
 #include "obs.h"
 #include <cstdlib>
-int ct=0;
+//int ct=0;
 
 int get_random_num(int a, int b)
 {
@@ -10,9 +10,11 @@ int get_random_num(int a, int b)
         return result;
 }
 
+ float obS :: obs_speed = 0.10f; 
+
 obS :: obS()
 {   static int st=0;
-    obs_speed = 0.07f;
+    
     obs_posn.x = get_random_num(borderLeft, borderRight);
     if(st == 0) 
     obs_posn.y = 0;
@@ -53,8 +55,8 @@ void obS :: resetX()
     else obs_posn.y = -100;
     gt = (gt+1)%4;
 }
-/*void obS :: obspd(){
-    if(ct == 0)
-    obs_speed += 0.03f;
-     ct = (ct+1)%4;}*/
+void obS :: obspd(){
+    //if(ct == 0)
+    obs_speed += 0.06f;}
+     //ct = (ct+1)%4;}
 //FloatRect obS :: get_Posn(){return obsprt.getGlobalBounds();}

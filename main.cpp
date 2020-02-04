@@ -26,12 +26,12 @@ int main()
     RenderWindow window(VideoMode(SCREEN_WIDTH, SCREEN_HEIGH), "Car Dodge");
     Sprite bgsprt, bgsprt1;
 
-     double bkspd = 0.03;
+     double bkspd = 0.05;
     Texture bgtxt; bgtxt.loadFromFile("background.png");
     cAr p1_car;
     obS obs1, obs2, obs3, obs4;
-    int score = 0;
-    int lives = 3;
+    int score = 0; 
+    int lives = 3, ct=0;
      Text hud;
     Font font;
     if(!font.loadFromFile("DS-DIGIT.TTF"))
@@ -67,11 +67,29 @@ int main()
      if(score <= 10)
       back_scrol(bkspd);
      else if(score > 10 && score <= 25)
-     back_scrol(2*bkspd);
+     back_scrol(2.5*bkspd);
      else if(score > 25 && score <= 40)
      back_scrol(3*bkspd);
-     else if( score > 40)
-     back_scrol(4*bkspd);
+     else /*if( score > 40 && score <= 60)*/
+     back_scrol(4.5*bkspd);
+     //if(score > 100)
+     //back_scrol(4.5*bkspd);
+     
+
+    std :: stringstream ss;
+    ss << " Score: " << score << "    Lives: "<< lives;
+    hud.setString(ss.str());
+    
+    if((score > 10 && score <= 25) && (ct == 0)) 
+    {obs1.obspd(); ct++;} 
+    else if(score > 25 && score <= 40 && ct == 1)
+    {obs1.obspd(); ct++;}
+    else if(score > 40 && score <= 65 && ct == 2)
+    {obs1.obspd(); ct++;}
+    else if(score > 65 && ct == 3)
+    {obs1.obspd(); ct++;}
+    if(score > 100 && ct == 4)
+    {obs2.obspd(); ct++;}
 
         p1_car.update(); 
           obs1.update();
@@ -100,13 +118,6 @@ int main()
           if(obs3.getSprite().getGlobalBounds().intersects(obs4.getSprite().getGlobalBounds()))
           obs3.resetX();
      
-    std :: stringstream ss;
-    ss << "Score: " << score << "    Lives: "<< lives;
-    hud.setString(ss.str());
-    
-  
-     
-    // {obs1.obspd(); obs2.obspd(); obs3.obspd(); obs4.obspd();}
 
     /*ime t3 = clock.getElapsedTime();
      float sec = t3.asSeconds()*1000;

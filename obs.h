@@ -12,13 +12,14 @@ class obS{
    Vector2f obs_posn;
    Sprite obsprt;
    Texture obtxt;
-   float obs_speed;
+  static float obs_speed;
 
    public:
+    
    obS();
    Sprite getSprite();
   // Sprite get_sprte();
     int update();
     void resetX();
-    // void obspd();
+     void obspd();
 };

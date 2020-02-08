@@ -28,4 +28,4 @@ Finall to run the game :
 If everything works fine, you will see the game working.
 
 Have a look
-![alt test](/home/nitya/Pictures/Screenshot from 2020-02-04 23-04-47.png)
+![executable](screenshot/Screenshot from 2020-02-04 23-04-47.png)

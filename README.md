@@ -1,4 +1,4 @@
-# oops
+# Car Dodge
 C++ game using SFML. 
 
 This repo consists of car dodging game build up solely in c++ using Simple and Fast Multimedia Library(SFML).

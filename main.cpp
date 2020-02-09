@@ -19,6 +19,43 @@ void back_scrol(double spd)
      BackgroundY2 += spd;
 }
 
+int game_over(int score)
+{
+    const double scr_wth = 700;
+    const double scr_hgh = 380;
+    RenderWindow app(VideoMode(scr_wth, scr_hgh), "Game Over");
+    Texture gmtxt; gmtxt.loadFromFile("game_over.png");
+    Sprite gmsprt; gmsprt.setTexture(gmtxt);
+     Text hud;
+    Font font;
+    if(!font.loadFromFile("DS-DIGIT.TTF"))
+    return EXIT_FAILURE;
+    hud.setFont(font);
+    hud.setCharacterSize(45);
+    hud.setFillColor(sf :: Color :: Black);
+     std :: stringstream gm;
+    gm <<"\n\n    Score: " << score;
+    hud.setString(gm.str());
+
+    while(app.isOpen())
+    {
+         Event evt;
+         while(app.pollEvent(evt))
+          if(evt.type == Event :: Closed)
+            app.close();
+            if(Keyboard :: isKeyPressed(Keyboard :: Escape))
+            app.close();
+            Texture gmtxt; gmtxt.loadFromFile("game_over.png");
+            Sprite gmsprt; gmsprt.setTexture(gmtxt);
+             gmsprt.setPosition(0, -50); 
+
+           app.clear(Color :: Black);
+           app.draw(gmsprt);
+           app.draw(hud);
+           app.display();
+        }
+}
+
 int main()
 {
     const double SCREEN_WIDTH=800;
@@ -70,10 +107,7 @@ int main()
      back_scrol(2.5*bkspd);
      else if(score > 25 && score <= 40)
      back_scrol(3*bkspd);
-     else /*if( score > 40 && score <= 60)*/
-     back_scrol(4.5*bkspd);
-     //if(score > 100)
-     //back_scrol(4.5*bkspd);
+     else back_scrol(4.5*bkspd);
      
 
     std :: stringstream ss;
@@ -103,7 +137,7 @@ int main()
           {p1_car.set_cntr();
           lives--;
           obs1.resetX(); obs2.resetX(); obs3.resetX(); obs4.resetX();
-        if(lives < 1) window.close();}  
+        if(lives < 1) {game_over(score); window.close();}}  
           //non overlapping obstracles...
           if(obs1.getSprite().getGlobalBounds().intersects(obs2.getSprite().getGlobalBounds()))
           obs1.resetX();
@@ -117,12 +151,7 @@ int main()
           obs2.resetX();
           if(obs3.getSprite().getGlobalBounds().intersects(obs4.getSprite().getGlobalBounds()))
           obs3.resetX();
-     
 
-    /*ime t3 = clock.getElapsedTime();
-     float sec = t3.asSeconds()*1000;
-     score = sec;
-     clock.restart();*/
           window.clear(Color :: Black);
 
        window.draw(bgsprt);
@@ -134,6 +163,5 @@ int main()
        window.draw(p1_car.getSprite());
        window.draw(hud);
        window.display();
-
     } 
 }

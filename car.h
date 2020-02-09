@@ -12,8 +12,6 @@ class cAr{
     Vector2f car_posn;
     Sprite car_sprite;
     Texture car_texture;
-   // bool car_lft_prsd;
-   // bool car_rt_prsd;
     float car_speed;
 
     public:
@@ -23,11 +21,6 @@ class cAr{
     void move_rt();
     void move_up();
     void move_down();
-  //  void rebound_sides();
-   // void rebound_floor_ceil()   // void stop_lft();
-    //void stop_rt();
     void set_cntr();
-   // Sprite get_sprt();
     void update();
-   // void crspd();
 };

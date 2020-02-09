@@ -18,7 +18,6 @@ class obS{
     
    obS();
    Sprite getSprite();
-  // Sprite get_sprte();
     int update();
     void resetX();
      void obspd();

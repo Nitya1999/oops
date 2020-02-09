@@ -28,3 +28,7 @@ If everything works fine, you will see the game working.
 
 Have a look
 ![executable](screenshot/Screenshot%20from%202020-02-04%2023-04-47.png)
+
+
+On loosing all the lives, GAME OVER!!
+![game_over](screenshot/srnshot_over.png)
